@@ -1,11 +1,6 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore } from 'redux'
+import rootReducer from './reducer'
 
-// Logger with default options
-import logger from "redux-logger";
+const store = createStore(rootReducer)
 
-import reducer from "./reducer";
-
-export default function configureStore(initialState) {
-  const store = createStore(reducer, initialState, applyMiddleware(logger));
-  return store;
-}
+export default store

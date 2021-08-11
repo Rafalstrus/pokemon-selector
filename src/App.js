@@ -1,46 +1,54 @@
-import {useEffect,useState} from 'react'
+import { useEffect, useState } from 'react'
 import './App.css';
 
 
 import { PokeSelect } from './components/pokemon-select/pokemon-select.component';
 import { PokeCard } from './components/pokemon-card/pokemon-card-container.component';
-import {Loader} from "./components/loader/loader.component";
+import { Loader } from "./components/loader/loader.component";
 
 import ACTIONS from "./store-redux/action";
 import { connect } from "react-redux";
+import store from './store-redux/store';
 
 
-function App({createItem, deleteItem}) {
-  const [pokemon,setPokemon] = useState({})
-  useEffect( ()=>{
-    async function fetchData(){
+function App({ changeID, deleteItem }) {
+  const [pokemoninfo, setPokemonInfo] = useState({})
+  const [pokemonid,setPokemonId] = useState("1")
+  useEffect(() => {
+    async function fetchData() {
       const response = await fetch('https://pokeapi.co/api/v2/pokemon/ditto')
-      .then((res)=>res.json())
-      setPokemon(response)
+        .then((res) => res.json())
+      setPokemonInfo(response)
     }
     fetchData()
-  },[])
+  }, [])
+
+  store.subscribe(() => {
+    setPokemonId(store.getState().pokemonid)
+  })
+
   return (
     <div className="App">
-      <Loader/>
+      <Loader />
       <div>
-      <PokeSelect 
-      setPokemon={setPokemon}
-      />
-      <PokeCard 
-      pokemon={pokemon}
-      />
-    <button onClick={() => {
-      createItem("#");
-    }}>
-add
-    </button>
-    <button onClick={() => {
-      deleteItem("#");
-    }}>
-delete
-    </button>
-    </div>
+        <PokeSelect
+          changeID={changeID}
+        />
+        <PokeCard
+          pokemoninfo={pokemoninfo}
+        />
+        <button onClick={() => {
+          changeID(5);
+        }}>
+          previous
+        </button>
+        <button onClick={() => {
+          changeID(6);
+        }}>
+          next
+        </button>
+      </div>
+      <p>{pokemonid}</p>
     </div>
   );
 }
@@ -50,7 +58,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  createItem: item => dispatch(ACTIONS.createItem(item)),
+  changeID: item => dispatch(ACTIONS.changeID(item)),
   deleteItem: id => dispatch(ACTIONS.deleteItem(id))
 });
 
