@@ -1,25 +1,60 @@
-import logo from './logo.svg';
+import {useEffect,useState} from 'react'
 import './App.css';
 
-function App() {
+
+import { PokeSelect } from './components/pokemon-select/pokemon-select.component';
+import { PokeCard } from './components/pokemon-card/pokemon-card-container.component';
+import {Loader} from "./components/loader/loader.component";
+
+import ACTIONS from "./store-redux/action";
+import { connect } from "react-redux";
+
+
+function App({createItem, deleteItem}) {
+  const [pokemon,setPokemon] = useState({})
+  useEffect( ()=>{
+    async function fetchData(){
+      const response = await fetch('https://pokeapi.co/api/v2/pokemon/ditto')
+      .then((res)=>res.json())
+      setPokemon(response)
+    }
+    fetchData()
+  },[])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Loader/>
+      <div>
+      <PokeSelect 
+      setPokemon={setPokemon}
+      />
+      <PokeCard 
+      pokemon={pokemon}
+      />
+    <button onClick={() => {
+      createItem("#");
+    }}>
+add
+    </button>
+    <button onClick={() => {
+      deleteItem("#");
+    }}>
+delete
+    </button>
+    </div>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  items: state.items
+});
+
+const mapDispatchToProps = dispatch => ({
+  createItem: item => dispatch(ACTIONS.createItem(item)),
+  deleteItem: id => dispatch(ACTIONS.deleteItem(id))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)((App));
