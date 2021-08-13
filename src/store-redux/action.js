@@ -1,6 +1,6 @@
 const Types = {
   CHANGE_ID: "CHANGE_ID",
-  DELETE_ITEM: "DELETE_ITEM"
+  SET_DATA_FROM_API: "SET_DATA_FROM_API"
 };
 // actions
 const changeID = id => ({
@@ -8,14 +8,13 @@ const changeID = id => ({
   id: id
 });
 
-const deleteItem = id => ({
-  type: Types.DELETE_ITEM,
-  payload: id
-});
-
+const setDataFromApi = info =>({
+  type : Types.SET_DATA_FROM_API,
+  payload: info
+})
 const exportedObject ={
   changeID,
-  deleteItem,
+  setDataFromApi,
   Types
 }
 export default exportedObject

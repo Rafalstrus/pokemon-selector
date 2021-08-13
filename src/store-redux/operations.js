@@ -1,17 +1,28 @@
 import ACTIONS from "./action";
 import store from './store';
 
+
+export function getDataFromApi({setDataFromApi}) {
+    return async function({setDataFromApi}) {
+      return await fetch('https://pokeapi.co/api/v2/pokemon/ditto')
+      .then((res) => res.json())
+        .then(({ data }) => {
+        setDataFromApi('{art: "a"}');
+      });
+    };
+  }
+
 const mapStateToProps = state => ({
     item: state.item
 });
 
 const mapDispatchToProps = dispatch => ({
-    changeID: item => dispatch(ACTIONS.changeID(item)),
-    deleteItem: id => dispatch(ACTIONS.deleteItem(id))
+    changeID: id => dispatch(ACTIONS.changeID(id)),
+    setDataFromApi: data => dispatch(ACTIONS.setDataFromApi(data))
 });
 
-export{
+export {
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
 }
 export default store

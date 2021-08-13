@@ -1,4 +1,10 @@
 .App {
-  text-align: center;
+  height:100vh;
+  display: flex;
+  justify-content: center;
+}
+button{
+  width: 100px;
+  height: 20px;
 }
 
