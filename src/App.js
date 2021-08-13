@@ -6,14 +6,13 @@ import { PokeSelect } from './components/pokemon-select/pokemon-select.component
 import { PokeCard } from './components/pokemon-card/pokemon-card-container.component';
 import { Loader } from "./components/loader/loader.component";
 
-import ACTIONS from "./store-redux/action";
+import store, {mapStateToProps, mapDispatchToProps} from './store-redux/operations';
 import { connect } from "react-redux";
-import store from './store-redux/store';
 
 
 function App({ changeID, deleteItem }) {
   const [pokemoninfo, setPokemonInfo] = useState({})
-  const [pokemonid,setPokemonId] = useState("1")
+  const [pokemonid,setPokemonId] = useState(store.getState().pokemonid)
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('https://pokeapi.co/api/v2/pokemon/ditto')
@@ -32,18 +31,17 @@ function App({ changeID, deleteItem }) {
       <Loader />
       <div>
         <PokeSelect
-          changeID={changeID}
         />
         <PokeCard
           pokemoninfo={pokemoninfo}
         />
         <button onClick={() => {
-          changeID(5);
+          changeID(pokemonid-1);
         }}>
           previous
         </button>
         <button onClick={() => {
-          changeID(6);
+          changeID(pokemonid+1);
         }}>
           next
         </button>
@@ -53,16 +51,7 @@ function App({ changeID, deleteItem }) {
   );
 }
 
-const mapStateToProps = state => ({
-  items: state.items
-});
-
-const mapDispatchToProps = dispatch => ({
-  changeID: item => dispatch(ACTIONS.changeID(item)),
-  deleteItem: id => dispatch(ACTIONS.deleteItem(id))
-});
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)((App));
+)(App);

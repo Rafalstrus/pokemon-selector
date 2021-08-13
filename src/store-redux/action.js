@@ -13,8 +13,9 @@ const deleteItem = id => ({
   payload: id
 });
 
-export default {
+const exportedObject ={
   changeID,
   deleteItem,
   Types
-};
+}
+export default exportedObject
