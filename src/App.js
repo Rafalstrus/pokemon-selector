@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css';
 
 
@@ -7,15 +6,12 @@ import { PokeCard } from './components/pokemon-card/pokemon-card-container.compo
 import { Loader } from "./components/loader/loader.component";
 import { ColorChangerButton } from './components/color-changer/color-changer.component';
 
-import store,
-{
-  mapStateToProps, mapDispatchToProps
-} from './store-redux/operations';
-import { connect, useSelector} from "react-redux";
+import { mapStateToProps, mapDispatchToProps } from './store-redux/operations';
+import { connect, useSelector } from "react-redux";
 
 
 function App({ changeID }) {
-  const pokeid = useSelector((state) => state.pokemonid )
+  const pokeid = useSelector((state) => state.pokemonid)
   return (
     <div className="App">
       <Loader />
@@ -24,8 +20,8 @@ function App({ changeID }) {
         />
         <ColorChangerButton
         />
-        </div>
-        <div id="content">
+      </div>
+      <div id="content">
         <div className="id-change-button">
           <button onClick={() => {
             changeID(pokeid - 1);

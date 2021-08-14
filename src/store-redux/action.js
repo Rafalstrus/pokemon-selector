@@ -10,7 +10,7 @@ const changeID = id => ({
 
 const setDataFromApi = info =>({
   type : Types.SET_DATA_FROM_API,
-  payload: info
+  info: info
 })
 const exportedObject ={
   changeID,

@@ -1,22 +1,21 @@
 import pokeNames from './all-pokemon-names.json'
 
 import {useEffect, useRef} from 'react'
-//import { useDispatch } from 'react-redux';
+
+import { mapStateToProps, mapDispatchToProps } from '../../store-redux/operations';
+import { connect } from "react-redux";
+
+import {fetchPokeInfo} from '../../fetches'
 
 import './pokemon-select.styles.css'
 
-import  {mapStateToProps, mapDispatchToProps} from '../../store-redux/operations';
-import { connect } from "react-redux";
 
-const PokeSelect = ({ setDataFromApi }) => {
-   // const dispatch = useDispatch();
+const PokeSelect = ({setDataFromApi}) => {
    const inputRef = useRef()
     useEffect(() => {
-        setDataFromApi('1')
       })
     return(
     <div id="pokemon-select">
-        {console.log(pokeNames)}
         <input
         ref={inputRef}
         list ="pokeNames"
@@ -29,14 +28,12 @@ const PokeSelect = ({ setDataFromApi }) => {
                 </option>
             ))}
         </datalist>
-        <button onClick ={()=>{
-        setDataFromApi(7)
+        <button onClick ={async ()=>{
+            var x = await fetchPokeInfo(3)
+            setDataFromApi(x)
         }}
         > change</button>
     </div>
     )
 }
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(PokeSelect)
+export default connect(mapStateToProps, mapDispatchToProps)(PokeSelect)
