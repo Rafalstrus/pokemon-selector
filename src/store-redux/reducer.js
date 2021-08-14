@@ -1,4 +1,5 @@
 import ACTIONS from "./action";
+import {getDataFromApi} from './fetchers'
 
 const defaultState = {
   pokemonid: 1,
@@ -17,6 +18,8 @@ const Reducer = (state = defaultState, action) => {
       }
     }
     case ACTIONS.Types.SET_DATA_FROM_API: {
+      var info = getDataFromApi(3)
+      console.log(info)
       return {
         ...state,
         pokemoninfo: action.info

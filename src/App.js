@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './App.css';
 
 
@@ -9,44 +9,39 @@ import { ColorChangerButton } from './components/color-changer/color-changer.com
 
 import store,
 {
-  mapStateToProps, mapDispatchToProps,
-  getDataFromApi
+  mapStateToProps, mapDispatchToProps
 } from './store-redux/operations';
-import { connect } from "react-redux";
+import { connect, useSelector} from "react-redux";
 
 
-function App({ changeID, }) {
-  const [pokemonid, setPokemonId] = useState(store.getState().pokemonid)
-  useEffect(() => {
-    async function fetchData() {
-
-      getDataFromApi(1)
-
-    }
-    fetchData()
-  }, [])
-
+function App({ changeID }) {
+  const pokeid = useSelector((state) => state.pokemonid )
   return (
     <div className="App">
       <Loader />
-      <div>
+      <div id="nav">
         <PokeSelect
         />
         <ColorChangerButton
         />
-
-        <button onClick={() => {
-          changeID(pokemonid - 1);
-        }}>
-          {'<'}
-        </button>
+        </div>
+        <div id="content">
+        <div className="id-change-button">
+          <button onClick={() => {
+            changeID(pokeid - 1);
+          }}>
+            {'<'}
+          </button>
+        </div>
         <PokeCard
         />
-        <button onClick={() => {
-          changeID(pokemonid + 1);
-        }}>
-          {'>'}
-        </button>
+        <div className="id-change-button">
+          <button onClick={() => {
+            changeID(pokeid + 1);
+          }}>
+            {'>'}
+          </button>
+        </div>
       </div>
     </div>
   );

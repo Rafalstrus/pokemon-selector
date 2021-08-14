@@ -8,7 +8,7 @@ export const PokeCard = props => {
     //const pokename = useSelector((state) => state.pokename)
 
     return (
-        <div>
+        <div id="poke-card">
             {pokeid}
         </div>
     )
