@@ -3,7 +3,7 @@ import ACTIONS from "./action";
 const defaultState = {
   pokemonid: 1,
   pokemoninfo: {},
-  pokemonName: ""
+  pokemonname: ""
 };
 
 const Reducer =  (state = defaultState, action) => {
@@ -17,9 +17,22 @@ const Reducer =  (state = defaultState, action) => {
       }
     }
     case ACTIONS.Types.SET_DATA_FROM_API: {
+      let id = (action.info.id >= 1) ? ((action.info.id <= 898) ? action.info.id : 898) : 1;
+      if(action.info.error !=="404"){
+        console.log(state)
+        return {
+          ...state,
+          pokemoninfo: action.info,
+          pokemonname: action.info.name,
+          pokemonid: id
+        }
+      }
+      return{ ...state}
+    }
+    case ACTIONS.Types.CHANGE_NAME: {
       return {
         ...state,
-        pokemoninfo: {"a": action.info}
+        pokemonname: action.name
       }
     }
     default:

@@ -9,7 +9,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     changeID: id => dispatch(ACTIONS.changeID(id)),
-    setDataFromApi: data => dispatch(ACTIONS.setDataFromApi(data))
+    setDataFromApi: data => dispatch(ACTIONS.setDataFromApi(data)),
+    changeName: name => dispatch(ACTIONS.changeName(name))
 });
 
 export {

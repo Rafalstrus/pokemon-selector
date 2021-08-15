@@ -1,6 +1,6 @@
 import pokeNames from './all-pokemon-names.json'
 
-import {useEffect, useRef} from 'react'
+import { useRef} from 'react'
 
 import { mapStateToProps, mapDispatchToProps } from '../../store-redux/operations';
 import { connect } from "react-redux";
@@ -12,8 +12,6 @@ import './pokemon-select.styles.css'
 
 const PokeSelect = ({setDataFromApi}) => {
    const inputRef = useRef()
-    useEffect(() => {
-      })
     return(
     <div id="pokemon-select">
         <input
@@ -29,7 +27,7 @@ const PokeSelect = ({setDataFromApi}) => {
             ))}
         </datalist>
         <button onClick ={async ()=>{
-            var x = await fetchPokeInfo(3)
+            var x = await fetchPokeInfo(inputRef.current.value)
             setDataFromApi(x)
         }}
         > change</button>
