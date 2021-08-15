@@ -10,16 +10,16 @@ import {fetchPokeInfo} from '../../fetches'
 import './pokemon-select.styles.css'
 
 
-const PokeSelect = ({setDataFromApi}) => {
-   const inputRef = useRef()
+const PokeSelect = ({setDataFromApi}: any) => {
+   const inputRef :any = useRef()
     return(
     <div id="pokemon-select">
         <input
-        ref={inputRef}
+        ref ={inputRef}
         list ="pokeNames"
         ></input>
         <datalist id="pokeNames">
-            {pokeNames.map((pokeName) => (
+            {pokeNames.map((pokeName :string) => (
                 <option
                     key={pokeName}
                 >{pokeName}

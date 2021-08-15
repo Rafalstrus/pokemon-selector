@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import './pokemon-card.styles.css'
 
 export const PokeCard = () => {
-    const pokeid = useSelector((state) => state.pokemonid)
-    const pokeinfo = useSelector((state) => state.pokemoninfo)
-    const pokename = useSelector((state) => state.pokemonname)
-    var pokeimg = ""
+    const pokeid :number = useSelector((state :any) => state.pokemonid)
+    const pokeinfo :any = useSelector((state :any) => state.pokemoninfo)
+    const pokename :string = useSelector((state :any) => state.pokemonname)
+    var pokeimg :string= ""
     
     if(Object.keys(pokeinfo).length!==0){
          pokeimg = pokeinfo.sprites.front_default
