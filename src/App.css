@@ -7,18 +7,24 @@ button{
   height: 20px;
 }
 #nav{
+  padding: 1%;
   display: flex;
   justify-content: center;
 }
 #content{
   display: flex;
   justify-content: center;
+
 }
 .id-change-button{
-  
+  height: 100%;
 }
 input{
   height: 20px;
   padding: 0;
   font-size: 12px;
+}
+#content{
+  margin: 5px;
+  height: 60%;
 }

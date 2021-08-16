@@ -33,8 +33,9 @@ const PokeSelect = ({setDataFromApi}: any) => {
         onClick ={async ()=>{
             var x = await fetchPokeInfo(inputRef.current.value)
             setDataFromApi(x)
+            inputRef.current.value = ""
         }}
-        > change</Button>
+        > Select</Button>
     </div>
     )
 }
