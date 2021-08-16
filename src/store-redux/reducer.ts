@@ -1,12 +1,18 @@
 import ACTIONS from "./action";
 
-const defaultState = {
+interface DefaultState {
+  pokemonid: number,
+  pokemoninfo: any,
+  pokemonname: string
+}
+
+const defaultState :DefaultState = {
   pokemonid: 1,
   pokemoninfo: {},
   pokemonname: ""
 };
 
-const Reducer =  (state = defaultState, action) => {
+const Reducer =  (state = defaultState, action :any) => {
   switch (action.type) {
     case ACTIONS.Types.CHANGE_ID: {
       console.log(action);

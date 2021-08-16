@@ -2,6 +2,8 @@ import './App.css';
 
 import {useEffect} from 'react'
 
+import {Button, Box} from '@material-ui/core/';
+
 import PokeSelect from './components/pokemon-select/pokemon-select.component';
 import { PokeCard } from './components/pokemon-card/pokemon-card-container.component';
 import { Loader } from "./components/loader/loader.component";
@@ -30,26 +32,28 @@ function App({ setDataFromApi }) {
         <ColorChangerButton
         />
       </div>
-      <div id="content">
+      <Box id="content">
         <div className="id-change-button">
-          <button onClick={async () => {
+          <Button 
+          onClick={async () => {
             var pokeInfoFetched = await fetchPokeInfo(pokeid - 1)
             setDataFromApi(pokeInfoFetched);
           }}>
             {'<'}
-          </button>
+          </Button>
         </div>
         <PokeCard
         />
         <div className="id-change-button">
-          <button onClick={async () => {
+          <Button 
+          onClick={async () => {
             var pokeInfoFetched = await fetchPokeInfo(pokeid + 1)
             setDataFromApi(pokeInfoFetched);
           }}>
             {'>'}
-          </button>
+          </Button>
         </div>
-      </div>
+      </Box>
     </div>
   );
 }
