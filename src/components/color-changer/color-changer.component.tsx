@@ -1,56 +1,56 @@
 
-import {useState} from 'react'
-import {Button} from '@material-ui/core/';
+import { useState } from 'react'
+import { Button } from '@material-ui/core/';
 
 import './color-changer.styles.css';
 import { useEffect } from 'react';
 
 interface Colors {
-    colorMain : number[],
-    colorNav : number[],
-    colorCard : number[]
+    colorMain: number[],
+    colorNav: number[],
+    colorCard: number[]
 }
 //wymysl jakis algorytm do tworzenia motywow kolorow
 
-let color = (max :number) =>(Math.floor(Math.random() * (max - 0 + 1)) + 0)
+let color = (max: number = 255, min: number = 0) => (Math.floor(Math.random() * (max - min + 1)) + min)
 
-let colorSet = () => [color(12),color(12),color(12)]
+let colorSet = (numbers: number[] = [255, 255, 255], difference: number = 0) => (
+    [color(numbers[0] + difference, difference),
+    color(numbers[1] + difference, difference),
+    color(numbers[2] + difference, difference)]
+)
 
 export const ColorChangerButton = () => {
-    const [colorArray ,setColorArray] = useState<Colors>() 
+    const [colorArray, setColorArray] = useState<Colors>()
 
-    useEffect(()=>{
+    useEffect(() => {
         setColorArray({
-            colorMain :[color(255),color(255),color(225)],
-            colorNav :[color(255),color(255),color(255)],
-            colorCard :[color(255),color(255),color(255)]
+            colorMain: [27, 123, 19],
+            colorNav: [1, 187, 76],
+            colorCard: [102, 184, 22]
         })
-    },[])
-    useEffect(()=>{
-        document.getElementById('nav')!.style.backgroundColor = "rgb("+colorArray?.colorNav+")";
+    }, [])
+    useEffect(() => {
+        document.getElementById('nav')!.style.backgroundColor = "rgb(" + colorArray?.colorNav + ")";
         var x = document.querySelector<HTMLElement>('.App')!
-        x.style.backgroundColor = "rgb("+colorArray?.colorMain+")"
-        document.getElementById('poke-card')!.style.backgroundColor = "rgb("+colorArray?.colorCard+")"
-        //here change background and nav background
-    },[colorArray])
-    return(
-    <div id="color-change-button">
-        <Button 
-        variant="contained"
-        onClick={() => {
-            var mainColor :number[] = [color(255),color(255),color(255)]
-            var navColorAround :number = color(255)
-            var cardColorAround :number = color(255)
-            setColorArray({
-                colorMain :mainColor,
-                colorNav :[mainColor[0]+color(navColorAround),
-                mainColor[1]+color(navColorAround),
-                mainColor[2]+color(navColorAround)],
-                colorCard :[mainColor[0]+color(cardColorAround),
-                mainColor[1]+color(cardColorAround),
-                mainColor[2]+color(cardColorAround)]
-            })
-        }}></Button>
-    </div>
+        x.style.backgroundColor = "rgb(" + colorArray?.colorMain + ")"
+        document.getElementById('poke-card')!.style.backgroundColor = "rgb(" + colorArray?.colorCard + ")"
+
+    }, [colorArray])
+    return (
+        <div id="color-change-button">
+            <Button
+                variant="contained"
+                onClick={() => {
+                    var cardColorAround: number[] = colorSet()
+                    var navColorAround: number = color(10,10)
+                    var mainColor: number = color(10,10)
+                    setColorArray({
+                        colorCard: cardColorAround,
+                        colorNav: colorSet(cardColorAround, -navColorAround),
+                        colorMain: colorSet(cardColorAround, +mainColor)
+                    })
+                }}></Button>
+        </div>
     )
 }

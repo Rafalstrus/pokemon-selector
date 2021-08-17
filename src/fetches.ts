@@ -1,4 +1,5 @@
 export const fetchPokeInfo = async (nameorId :any) => {
+    if(nameorId.length !==0){
     var data ={}
         await fetch('https://pokeapi.co/api/v2/pokemon/' + nameorId)
         .then(async (response) => {
@@ -10,7 +11,7 @@ export const fetchPokeInfo = async (nameorId :any) => {
                 data = await response.json()
             }
         })
-
-        
     return await data
+    }
+    return { "error": "404" }
 }

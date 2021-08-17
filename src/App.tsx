@@ -14,7 +14,7 @@ import { connect, useSelector } from "react-redux";
 
 import { fetchPokeInfo } from './fetches'
 
-function App({ setDataFromApi }) {
+function App({ setDataFromApi }:any ) {
   useEffect(() => {
     async function getData() {// eslint-disable-next-line react-hooks/exhaustive-deps
       var pokeInfoFetched = await fetchPokeInfo(1)// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -22,10 +22,12 @@ function App({ setDataFromApi }) {
     }
     getData()// eslint-disable-next-line react-hooks/exhaustive-deps
   }, []) // eslint-disable-next-line react-hooks/exhaustive-deps
-  const pokeid = useSelector((state) => state.pokemonid)
-  return (
+  const pokeid = useSelector((state :any) => state.pokemonid)
+  return(
     <div className="App">
-      <Loader />
+      <Loader 
+      loading={true}
+      />
       <div id="nav">
         <PokeSelect
         />
