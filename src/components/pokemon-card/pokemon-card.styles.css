@@ -1,7 +1,16 @@
 #poke-card{
     flex: 0 1 50%;
     height: 100;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
 }
+#poke-card > div:first-child {
+    flex: 1 0 100%;
+  }
+  #poke-stats{
+      text-align:justify;
+  }
 .types-images{
     width: 4vw;
     height: 4vw;

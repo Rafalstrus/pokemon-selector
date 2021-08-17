@@ -43,8 +43,8 @@ export const ColorChangerButton = () => {
                 variant="contained"
                 onClick={() => {
                     var cardColorAround: number[] = colorSet()
-                    var navColorAround: number = color(10,10)
-                    var mainColor: number = color(10,10)
+                    var navColorAround: number = color(5,1)
+                    var mainColor: number = color(30,20)
                     setColorArray({
                         colorCard: cardColorAround,
                         colorNav: colorSet(cardColorAround, -navColorAround),
