@@ -1,17 +1,25 @@
-#poke-card{
+#poke-card {
     flex: 0 1 50%;
-    height: 100;
     text-align: center;
     display: flex;
     flex-wrap: wrap;
+    padding:1vw;
 }
-#poke-card > div:first-child {
+
+#poke-card>div:first-child {
     flex: 1 0 100%;
-  }
-  #poke-stats{
-      text-align:justify;
-  }
-.types-images{
-    width: 4vw;
-    height: 4vw;
+}
+
+#poke-stats {
+    margin-left: auto;
+    text-align: justify;
+}
+#shiny-box{
+    margin-top:12vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+.poke-images{
+    width: 10vw;
+    height: 10vw;
 }

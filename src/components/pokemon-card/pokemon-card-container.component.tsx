@@ -42,8 +42,14 @@ export const PokeCard = () => {
                     width="fit-content"
                     margin="auto"
                 >
-                    <img src={pokeimg} alt=""></img>
-                    <img src={pokeimgBack} alt=""></img>
+                    <img
+                        className="poke-images"
+                        src={pokeimg}
+                        alt=""></img>
+                    <img
+                        className="poke-images"
+                        src={pokeimgBack}
+                        alt=""></img>
                 </Box>
             </div>
             {console.log(pokeinfo)}
@@ -53,17 +59,24 @@ export const PokeCard = () => {
             <PokeStats
                 pokestats={pokestats}
             />
-            <div>
-            <p>Shiny</p>
-            <Box
-                border="solid"
-                overflow="hidden"
-                width="fit-content"
-                margin="auto"
-            >
-                <img src={pokeimgShiny} alt=""></img>
-                <img src={pokeimgBackShiny} alt=""></img>
-            </Box>
+            <div
+                id="shiny-box">
+                <p>Shiny</p>
+                <Box
+                    border="solid"
+                    overflow="hidden"
+                    width="fit-content"
+                    margin="auto"
+                >
+                    <img
+                        className="poke-images"
+                        src={pokeimgShiny}
+                        alt=""></img>
+                    <img
+                        className="poke-images"
+                        src={pokeimgBackShiny}
+                        alt=""></img>
+                </Box>
             </div>
         </div>
     )

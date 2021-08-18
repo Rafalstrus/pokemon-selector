@@ -1,4 +1,6 @@
 
+import './pokemon-types.styles.css'
+
 export const PokeTypes = ({poketypes}: any) => {
     return(
     <div>{
@@ -9,7 +11,9 @@ export const PokeTypes = ({poketypes}: any) => {
                     <p>{type.name}</p>
                     <img 
                     className ="types-images"
-                    alt="" src={"/types-assets/"+type.name+".svg"}
+                    alt=""
+                    id={type.name}
+                    src={"/types-assets/"+type.name+".svg"}
                     ></img>
                 </div>
             )
