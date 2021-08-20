@@ -17,6 +17,7 @@ const PokeSelect = ({setDataFromApi}: any) => {
     return(
     <div id="pokemon-select">
         <input
+        id="input-search"
         ref ={inputRef}
         list ="pokeNames"
         ></input>

@@ -1,6 +1,6 @@
 import './App.css';
 
-import { useEffect,useRef,useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { Button, Box } from '@material-ui/core/';
 
@@ -14,49 +14,56 @@ import { connect, useSelector } from "react-redux";
 
 import { fetchPokeInfo } from './fetches'
 
-function App({ setDataFromApi }:any ) {
+function App({ setDataFromApi }: any) {
   useEffect(() => {
-    async function getData() {// eslint-disable-next-line react-hooks/exhaustive-deps
-      var pokeInfoFetched = await fetchPokeInfo(1)// eslint-disable-next-line react-hooks/exhaustive-deps
-      setDataFromApi(pokeInfoFetched)// eslint-disable-next-line react-hooks/exhaustive-deps
+    async function getData() {
+      var pokeInfoFetched = await fetchPokeInfo(1)
+      setDataFromApi(pokeInfoFetched)
+      setTimeout(() => (setLoading(false)), 1300)
     }
     getData()// eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []) // eslint-disable-next-line react-hooks/exhaustive-deps
-  const pokeid = useSelector((state :any) => state.pokemonid)
+  }, [])
+  const pokeid = useSelector((state: any) => state.pokemonid)
   const leftButtonRef = useRef<HTMLButtonElement>(null)
   const rightButtonRef = useRef<HTMLButtonElement>(null)
-  const [canClick,setCanClick] = useState(true)
-  return(
+  const [canClick, setCanClick] = useState(true)
+  const [loading, setLoading] = useState(true)
+  return (
     <div className="App"
-    onKeyDown={
-      (event)=>{
-      if(event.key==="ArrowRight" && canClick){
-        if (null !== rightButtonRef.current) {
-          rightButtonRef.current.click();
-          setCanClick(false)
-          setTimeout(()=>(setCanClick(true)),100)
+      onKeyDown={
+        (event) => {
+          var input = event.nativeEvent.target as HTMLInputElement
+          if (event.key === "ArrowRight" && canClick && input.id !== "input-search") {
+            if (null !== rightButtonRef.current) {
+              setCanClick(false)
+              rightButtonRef.current.click();
+              setTimeout(() => (setCanClick(true)), 300)
+            }
           }
-      }
-        else if(event.key==="ArrowLeft" && canClick){
-          if (null !== leftButtonRef.current) {
-          leftButtonRef.current.click();
+          else if (event.key === "ArrowLeft" && canClick && input.id !== "input-search") {
+            if (null !== leftButtonRef.current) {
+              setCanClick(false)
+              leftButtonRef.current.click();
+              setTimeout(() => (setCanClick(true)), 300)
+            }
           }
         }
-    }
-  }
-    tabIndex={0}
+      }
+      tabIndex={0}
     >
-      <Loader 
-      loading={true}
-      />
+              {(loading) ?
+          <Loader
+            loading={true}
+          />
+          : <div>
       <div id="nav">
         <PokeSelect
         />
-        <ColorChangerButton
-        />
+        <ColorChangerButton />
+
       </div>
       <Box id="content">
-        
+
         <div className="id-change-button-div">
           <Button
             ref={leftButtonRef}
@@ -68,11 +75,12 @@ function App({ setDataFromApi }:any ) {
             {'<'}
           </Button>
         </div>
-        <PokeCard
-        />
+
+          <PokeCard
+          />
         <div className="id-change-button-div">
           <Button
-          ref={rightButtonRef}
+            ref={rightButtonRef}
             className="id-change-button"
             onClick={async () => {
               var pokeInfoFetched = await fetchPokeInfo(pokeid + 1)
@@ -82,6 +90,8 @@ function App({ setDataFromApi }:any ) {
           </Button>
         </div>
       </Box>
+
+            </div>}
     </div>
   );
 }
