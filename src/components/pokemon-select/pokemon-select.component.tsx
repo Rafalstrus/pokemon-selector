@@ -21,7 +21,9 @@ const PokeSelect = ({setDataFromApi}: any) => {
         ref ={inputRef}
         list ="pokeNames"
         ></input>
-        <datalist id="pokeNames">
+        <datalist 
+        id="pokeNames"
+        >
             {pokeNames.map((pokeName :string) => (
                 <option
                     key={pokeName}

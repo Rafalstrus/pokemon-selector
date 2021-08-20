@@ -7,7 +7,7 @@
 #loading-pokeball{
     position: absolute;
     top: 40vh;
-    left: calc(50vw - 10vh);
+    left: calc(50vw - 5vh);
     height: 10vh;
     width: 10vh;
     background-color: red;

@@ -38,3 +38,12 @@
     margin:auto;
     transform: rotate(2deg);
 }
+@media only screen and (max-width: 1000px) {
+    #poke-card {
+        min-width: 80vw
+    }
+    #poke-stats {
+        margin-left: 10vw;
+        width: 20vw;
+    }
+}

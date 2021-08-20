@@ -21,7 +21,6 @@ button {
 
 #content {
   display: flex;
-  height: 100px;
   justify-content: center;
   margin: 1vh;
   height: auto;
@@ -39,4 +38,16 @@ input {
   margin-right: 1vw;
   padding: 0 0;
   line-height: 0px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .App,span,input{
+    font-size: calc(2vh + 1vw);
+  }
+  .id-change-button{
+    width: 10px;
+  }
+  #content {
+    height: calc(auto *2)
+  }
 }
