@@ -54,6 +54,6 @@ input {
     min-width:8vw !important;
   }
   #content {
-    height: calc(auto +auto)
+    height: auto
   }
 }
