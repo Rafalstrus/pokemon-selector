@@ -36,6 +36,7 @@ const PokeSelect = ({setDataFromApi}: any) => {
         onClick ={async ()=>{
             var inputValue = inputRef.current.value
             inputRef.current.value = ""
+            //clear input value before fetching data
             var data = await fetchPokeInfo(inputValue)
             setDataFromApi(data)
         }}

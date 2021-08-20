@@ -17,6 +17,7 @@ button {
   padding: 1%;
   display: flex;
   justify-content: center;
+  box-shadow: inset 0px -4px 23px -4px rgba(51,51,51,0.55)
 }
 
 #content {
@@ -44,10 +45,15 @@ input {
   .App,span,input{
     font-size: calc(2vh + 1vw);
   }
+  button{
+    width:  1px;
+    min-width: 15vw !important;
+  }
   .id-change-button{
-    width: 10px;
+    width: 1px;
+    min-width:8vw !important;
   }
   #content {
-    height: calc(auto *2)
+    height: calc(auto +auto)
   }
 }

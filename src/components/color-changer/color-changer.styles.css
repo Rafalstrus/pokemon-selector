@@ -3,5 +3,6 @@
     margin-left: 20vw;
 }
 #color-change-button {
+    /* this option makes onclick button effect to whole site */
     position:static;
 }

@@ -10,7 +10,7 @@ interface Colors {
     colorNav: number[],
     colorCard: number[]
 }
-//wymysl jakis algorytm do tworzenia motywow kolorow
+//easy algorithm to make similar colors
 
 let color = (max: number = 255, min: number = 0) => (Math.floor(Math.random() * (max - min + 1)) + min)
 
@@ -35,7 +35,6 @@ export const ColorChangerButton = () => {
         var x = document.querySelector<HTMLElement>('.App')!
         x.style.backgroundColor = "rgb(" + colorArray?.colorMain + ")"
         document.getElementById('poke-card')!.style.backgroundColor = "rgb(" + colorArray?.colorCard + ")"
-
     }, [colorArray])
     return (
         <div id="color-change-button-container">
@@ -51,7 +50,7 @@ export const ColorChangerButton = () => {
                         colorNav: colorSet(cardColorAround, -navColorAround),
                         colorMain: colorSet(cardColorAround, +mainColor)
                     })
-                }}></Button>
+                }}>Color</Button>
         </div>
     )
 }

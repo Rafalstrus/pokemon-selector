@@ -31,6 +31,7 @@
     border: solid;
     border-image: linear-gradient(45deg, turquoise, greenyellow) 1;
     border-width: 5px 3px 3px 5px;
+    /* css has problem with images inside public folder, so i move svg image inside pokemon-card */
     background-image: url("pokebackground.svg");
     background-repeat: no-repeat;
     background-size: 100% auto;
@@ -40,7 +41,7 @@
 }
 @media only screen and (max-width: 1000px) {
     #poke-card {
-        min-width: 80vw
+        min-width: 80vw;
     }
     #poke-stats {
         margin-left: 10vw;
