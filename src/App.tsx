@@ -1,6 +1,6 @@
 import './App.css';
 
-import { useEffect } from 'react'
+import { useEffect,useRef,useState } from 'react'
 
 import { Button, Box } from '@material-ui/core/';
 
@@ -23,8 +23,29 @@ function App({ setDataFromApi }:any ) {
     getData()// eslint-disable-next-line react-hooks/exhaustive-deps
   }, []) // eslint-disable-next-line react-hooks/exhaustive-deps
   const pokeid = useSelector((state :any) => state.pokemonid)
+  const leftButtonRef = useRef<HTMLButtonElement>(null)
+  const rightButtonRef = useRef<HTMLButtonElement>(null)
+  const [canClick,setCanClick] = useState(true)
   return(
-    <div className="App">
+    <div className="App"
+    onKeyDown={
+      (event)=>{
+      if(event.key==="ArrowRight" && canClick){
+        if (null !== rightButtonRef.current) {
+          rightButtonRef.current.click();
+          setCanClick(false)
+          setTimeout(()=>(setCanClick(true)),100)
+          }
+      }
+        else if(event.key==="ArrowLeft" && canClick){
+          if (null !== leftButtonRef.current) {
+          leftButtonRef.current.click();
+          }
+        }
+    }
+  }
+    tabIndex={0}
+    >
       <Loader 
       loading={true}
       />
@@ -35,8 +56,10 @@ function App({ setDataFromApi }:any ) {
         />
       </div>
       <Box id="content">
+        
         <div className="id-change-button-div">
           <Button
+            ref={leftButtonRef}
             className="id-change-button"
             onClick={async () => {
               var pokeInfoFetched = await fetchPokeInfo(pokeid - 1)
@@ -49,6 +72,7 @@ function App({ setDataFromApi }:any ) {
         />
         <div className="id-change-button-div">
           <Button
+          ref={rightButtonRef}
             className="id-change-button"
             onClick={async () => {
               var pokeInfoFetched = await fetchPokeInfo(pokeid + 1)

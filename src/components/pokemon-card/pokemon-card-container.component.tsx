@@ -31,16 +31,12 @@ export const PokeCard = () => {
             pokestats.push(pokeinfo.stats[i])
         }
     }
-    console.log(poketypes)
     return (
         <div id="poke-card">
             <div>
                 <p>{pokename + " (" + pokeid + ")"}</p>
                 <Box
-                    border="solid"
-                    overflow="hidden"
-                    width="fit-content"
-                    margin="auto"
+                className="poke-images-container"
                 >
                     <img
                         className="poke-images"
@@ -52,7 +48,6 @@ export const PokeCard = () => {
                         alt=""></img>
                 </Box>
             </div>
-            {console.log(pokeinfo)}
             <PokeTypes
                 poketypes={poketypes}
             />
@@ -63,10 +58,7 @@ export const PokeCard = () => {
                 id="shiny-box">
                 <p>Shiny</p>
                 <Box
-                    border="solid"
-                    overflow="hidden"
-                    width="fit-content"
-                    margin="auto"
+                className="poke-images-container"
                 >
                     <img
                         className="poke-images"

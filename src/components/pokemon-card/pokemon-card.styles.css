@@ -4,6 +4,9 @@
     display: flex;
     flex-wrap: wrap;
     padding:1vw;
+    min-width: 40vw;
+    border-radius: 1%;
+    box-shadow:0px 7px 22px 3px rgba(0,0,0,0.95)
 }
 
 #poke-card>div:first-child {
@@ -13,6 +16,7 @@
 #poke-stats {
     margin-left: auto;
     text-align: justify;
+    width: 14vw;
 }
 #shiny-box{
     margin-top:12vh;
@@ -22,4 +26,16 @@
 .poke-images{
     width: 10vw;
     height: 10vw;
+}
+.poke-images-container{
+    border: solid;
+    border-image: linear-gradient(45deg, turquoise, greenyellow) 1;
+    border-width: 5px 3px 3px 5px;
+    border-radius:95% 4% 97% 5%/4% 94% 3% 95%;
+    background-image: url("pokebackground.svg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width:fit-content;
+    margin:auto;
+    transform: rotate(2deg);
 }

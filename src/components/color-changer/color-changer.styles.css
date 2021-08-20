@@ -1,3 +1,7 @@
-#color-change-button {
+#color-change-button-container {
+    margin: auto;
     margin-left: 20vw;
+}
+#color-change-button {
+    position:static;
 }
