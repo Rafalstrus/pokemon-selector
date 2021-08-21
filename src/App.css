@@ -53,10 +53,10 @@ input {
   }
   .id-change-button{
     width: 1px;
-    min-width:9vw !important;
+    min-width:7vw !important;
+
   }
   #content {
     height: auto;
-    width: 1vw;
   }
 }

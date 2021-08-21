@@ -84,6 +84,7 @@ function App({ setDataFromApi }: any) {
             ref={rightButtonRef}
             className="id-change-button"
             onClick={async () => {
+              console.log("click")
               var pokeInfoFetched = await fetchPokeInfo(pokeid + 1)
               setDataFromApi(pokeInfoFetched);
             }}>

@@ -56,4 +56,7 @@
         width: 18vh;
         height: 18vh;
     }
+    #shiny-box{
+        flex: auto;
+    }
 }

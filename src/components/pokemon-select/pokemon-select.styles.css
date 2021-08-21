@@ -1,3 +1,9 @@
 #pokemon-select{
     margin-left: 25vw;
 }
+@media only screen and (orientation: portrait) {
+ 
+#pokemon-select{
+    margin-left: 0;
+}
+}

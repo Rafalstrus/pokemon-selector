@@ -32,8 +32,8 @@ export const ColorChangerButton = () => {
     }, [])
     useEffect(() => {
         document.getElementById('nav')!.style.backgroundColor = "rgb(" + colorArray?.colorNav + ")";
-        var x = document.querySelector<HTMLElement>('.App')!
-        x.style.backgroundColor = "rgb(" + colorArray?.colorMain + ")"
+        var appClass = document.querySelector<HTMLElement>('.App')!
+        appClass.style.backgroundColor = "rgb(" + colorArray?.colorMain + ")"
         document.getElementById('poke-card')!.style.backgroundColor = "rgb(" + colorArray?.colorCard + ")"
     }, [colorArray])
     return (
