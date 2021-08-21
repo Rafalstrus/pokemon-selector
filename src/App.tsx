@@ -14,12 +14,13 @@ import { connect, useSelector } from "react-redux";
 
 import { fetchPokeInfo } from './fetches'
 
+//on mobile view types images are very small, images of pokemons either, and buttons in nav has too low width
 function App({ setDataFromApi }: any) {
   useEffect(() => {
     async function getData() {
       var pokeInfoFetched = await fetchPokeInfo(1)
       setDataFromApi(pokeInfoFetched)
-      setTimeout(() => (setLoading(false)), 1300)
+      
     }
     getData()// eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -51,11 +52,10 @@ function App({ setDataFromApi }: any) {
       }
       tabIndex={0}
     >
-              {(loading) ?
           <Loader
-            loading={true}
+            loading={loading}
           />
-          : <div>
+          <div>
       <div id="nav">
         <PokeSelect
         />
@@ -77,6 +77,7 @@ function App({ setDataFromApi }: any) {
         </div>
 
           <PokeCard
+          setLoading={setLoading}
           />
         <div className="id-change-button-div">
           <Button
@@ -90,8 +91,7 @@ function App({ setDataFromApi }: any) {
           </Button>
         </div>
       </Box>
-
-            </div>}
+    </div>
     </div>
   );
 }

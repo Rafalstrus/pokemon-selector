@@ -3,6 +3,7 @@
     height: 100vh;
     position: absolute;
     background-color:green;
+    z-index: 1;
 }
 #loading-pokeball{
     position: absolute;

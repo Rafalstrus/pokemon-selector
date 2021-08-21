@@ -8,7 +8,7 @@ import './pokemon-card.styles.css'
 
 
 
-export const PokeCard = () => {
+export const PokeCard = ({setLoading}:any) => {
     const pokeid: number = useSelector((state: any) => state.pokemonid)
     const pokeinfo: any = useSelector((state: any) => state.pokemoninfo)
     const pokename: string = useSelector((state: any) => state.pokemonname)
@@ -69,7 +69,8 @@ export const PokeCard = () => {
                 <img
                     className="poke-images"
                     src={pokeimgBackShiny}
-                    alt=""></img>
+                    alt=""
+                    onLoad={() =>{setTimeout(() => (setLoading(false)), 1300)}}></img>
             </Box>
         </div>
         </div>

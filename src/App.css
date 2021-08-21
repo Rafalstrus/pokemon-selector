@@ -1,3 +1,6 @@
+html{
+  background-color:green;
+}
 .App {
   height: 100vh;
   font-size: calc(0.8vh + 0.8vw);
@@ -38,22 +41,22 @@ input {
   font-size: 12px;
   margin-right: 1vw;
   padding: 0 0;
-  line-height: 0px;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (orientation: portrait) {
   .App,span,input{
     font-size: calc(2vh + 1vw);
   }
   button{
-    width:  1px;
-    min-width: 15vw !important;
+    width:  auto;
+    min-width: auto !important;
   }
   .id-change-button{
     width: 1px;
-    min-width:8vw !important;
+    min-width:9vw !important;
   }
   #content {
-    height: auto
+    height: auto;
+    width: 1vw;
   }
 }
