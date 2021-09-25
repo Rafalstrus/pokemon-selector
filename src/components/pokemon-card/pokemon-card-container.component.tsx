@@ -8,7 +8,7 @@ import './pokemon-card.styles.css'
 
 
 
-export const PokeCard = ({setLoading}:any) => {
+export const PokeCard = ({setLoading,imgLoad,loading,setImgLoad} :any) => {
     const pokeid: number = useSelector((state: any) => state.pokemonid)
     const pokeinfo: any = useSelector((state: any) => state.pokemoninfo)
     const pokename: string = useSelector((state: any) => state.pokemonname)
@@ -34,45 +34,57 @@ export const PokeCard = ({setLoading}:any) => {
         }
     }
     return (
-        <div id="poke-card">
+        <div id="poke-card"
+        >
             <div>
-            <p>{pokename + " (" + pokeid + ")"}</p>
-            <Box
-            className="poke-images-container"
-            >
-                <img
-                    className="poke-images"
-                    src={pokeimg}
-                    alt=""></img>
-                <img
-                    className="poke-images"
-                    src={pokeimgBack}
-                    alt=""></img>
-            </Box>
-        </div>
-        <PokeTypes
-            poketypes={poketypes}
-        />
-        <PokeStats
-            pokestats={pokestats}
-        />
-        <div
-            id="shiny-box">
-            <p>Shiny</p>
-            <Box
-            className="poke-images-container"
-            >
-                <img
-                    className="poke-images"
-                    src={pokeimgShiny}
-                    alt=""></img>
-                <img
-                    className="poke-images"
-                    src={pokeimgBackShiny}
-                    alt=""
-                    onLoad={() =>{setTimeout(() => (setLoading(false)), 1300)}}></img>
-            </Box>
-        </div>
+                <p>{pokename + " (" + pokeid + ")"}</p>
+                <Box
+                    className="poke-images-container"
+                >
+                    <img
+                        style={imgLoad ? {} : { display: 'none' }}
+                        className="poke-images"
+                        src={pokeimg}
+                        alt=""></img>
+                    <img
+                        style={imgLoad ? {} : { display: 'none' }}
+                        className="poke-images"
+                        src={pokeimgBack}
+                        alt=""></img>
+                </Box>
+            </div>
+            <PokeTypes
+                poketypes={poketypes}
+            />
+            <PokeStats
+                pokestats={pokestats}
+            />
+            <div
+                id="shiny-box">
+                <p>Shiny</p>
+                <Box
+                    className="poke-images-container"
+                >
+                    <img
+                        style={imgLoad ? {} : { display: 'none' }}
+                        className="poke-images"
+                        src={pokeimgShiny}
+                        alt=""
+                        ></img>
+                    <img
+                        style={imgLoad ? {} : { display: 'none' }}
+                        className="poke-images"
+                        src={pokeimgBackShiny}
+                        alt=""
+                        onLoad={() => { 
+                            (loading)?
+                            setTimeout(() => (setLoading(false)), 1300):
+                             setImgLoad(true);
+                        }
+                        
+                        }></img>
+                </Box>
+            </div>
         </div>
     )
 }

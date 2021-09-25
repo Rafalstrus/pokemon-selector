@@ -24,7 +24,8 @@ export const Loader = ({loading} :LoaderProps) => {
             <img
                 id="loading-pokeball"
                 alt=""
-                src="/loading-pokeball.svg"></img>
+                src="/loading-pokeball.svg"
+                draggable="false"></img>
         </div>
     )
 }

@@ -27,8 +27,9 @@ function App({ setDataFromApi }: any) {
   const pokeid = useSelector((state: any) => state.pokemonid)
   const leftButtonRef = useRef<HTMLButtonElement>(null)
   const rightButtonRef = useRef<HTMLButtonElement>(null)
-  const [canClick, setCanClick] = useState(true)
-  const [loading, setLoading] = useState(true)
+  const [canClick, setCanClick] = useState<boolean>(true)
+  const [loading, setLoading] = useState<boolean>(true)
+  const [imgLoad, setImgLoad] = useState<boolean>(true)
   return (
     <div className="App"
       onKeyDown={
@@ -71,6 +72,7 @@ function App({ setDataFromApi }: any) {
             onClick={async () => {
               var pokeInfoFetched = await fetchPokeInfo(pokeid - 1)
               setDataFromApi(pokeInfoFetched);
+              setImgLoad(false)
             }}>
             {'<'}
           </Button>
@@ -78,15 +80,18 @@ function App({ setDataFromApi }: any) {
 
           <PokeCard
           setLoading={setLoading}
+          setImgLoad={setImgLoad}
+          loading={loading}
+          imgLoad={imgLoad}
           />
         <div className="id-change-button-div">
           <Button
             ref={rightButtonRef}
             className="id-change-button"
             onClick={async () => {
-              console.log("click")
               var pokeInfoFetched = await fetchPokeInfo(pokeid + 1)
               setDataFromApi(pokeInfoFetched);
+              setImgLoad(false)
             }}>
             {'>'}
           </Button>
@@ -96,7 +101,14 @@ function App({ setDataFromApi }: any) {
     </div>
   );
 }
-
+/*
+document.addEventListener("keyup", function (event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById("city-Name-Button").click();
+  }
+});
+*/
 export default connect(
   mapStateToProps,
   mapDispatchToProps

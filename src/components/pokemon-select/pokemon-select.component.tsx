@@ -22,6 +22,8 @@ const PokeSelect = ({setDataFromApi}: any) => {
         list ="pokeNames"
         ></input>
         <datalist 
+        className="datalist"
+        style = {{maxHeight: "50px",overflow: "hidden"}}
         id="pokeNames"
         >
             {pokeNames.map((pokeName :string) => (

@@ -38,6 +38,8 @@
     width:fit-content;
     margin:auto;
     transform: rotate(2deg);
+    height:10vw;
+    width:20vw;
 }
 @media only screen and (orientation: portrait) {
     #poke-card {
@@ -58,5 +60,9 @@
     }
     #shiny-box{
         flex: auto;
+    }
+    .poke-images-container{
+        width: 36vh;
+        height: 18vh;
     }
 }
